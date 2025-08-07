@@ -1,0 +1,17 @@
+{
+  "name": "otto-gb-pages",
+  "version": "1.0.0",
+  "description": "Otto AI English GB pages",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "format": "node format_html.js",
+    "include": "node include_components.js"
+  },
+  "keywords": ["otto", "invoicing", "bookkeeping", "finance"],
+  "author": "Otto AI",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+} 

@@ -1,0 +1,56 @@
+/* Footer Spacing Improvements */
+
+/* Increase spacing between footer link blocks */
+.ot-footer-link-block {
+    grid-row-gap: 28px !important; /* Increased from 18px */
+}
+
+/* Increase spacing between footer sections */
+.ot-footer-links-block {
+    margin-bottom: 20px;
+}
+
+/* Increase spacing between footer headings and links */
+.ot-footer-h4 {
+    margin-bottom: 25px !important; /* Increased from 20px */
+}
+
+/* Increase spacing between footer top and bottom sections */
+.ot-footer-top-block {
+    padding-bottom: 65px !important; /* Increased from 55px */
+}
+
+/* Increase spacing between footer columns */
+.ot-footer-top-grid {
+    grid-column-gap: 65px !important; /* Increased from 55px */
+    grid-row-gap: 65px !important; /* Increased from 55px */
+}
+
+/* Increase spacing between social media icons */
+.ot-footer-icon {
+    grid-column-gap: 25px !important; /* Increased from 20px */
+    margin-bottom: 28px !important; /* Increased from 23px */
+}
+
+/* Increase spacing between footer description and social icons */
+.ot-footer-pera {
+    margin-bottom: 20px !important; /* Increased from 14px */
+}
+
+/* Increase spacing between help text and email */
+.ot-footer-help-text {
+    margin-top: 10px;
+}
+
+/* Increase overall footer padding */
+.ot-footer-wraper {
+    padding-top: 65px !important; /* Increased from 55px */
+    padding-left: 60px !important; /* Increased from 50px */
+    padding-right: 60px !important; /* Increased from 50px */
+}
+
+/* Increase spacing between footer bottom and top sections */
+.ot-footer-bottom-block {
+    padding-top: 30px !important; /* Increased from 21px */
+    padding-bottom: 30px !important; /* Increased from 24px */
+}

@@ -1,0 +1,1 @@
+(()=>{var t;t=window.location.toString(),queryString=t.split("?")[1],document.querySelectorAll(".launchlist-form").forEach((function(t){var r=t.getAttribute("action");null!==queryString&&void 0!==queryString&&""!==queryString?(queryParams="?"+queryString,t.setAttribute("action",r+queryParams)):t.setAttribute("action",r)}))})();

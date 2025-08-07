@@ -1,0 +1,10 @@
+# Direct file serving (most specific first) - Cloudflare Pages strips .html automatically
+/es-us/invoicing /es-us/invoicing 200
+/es-us/invoicing/ /es-us/invoicing 200
+/es-us /es-us/index 200
+
+# Legacy redirects
+/facturacion /es-us/invoicing 301
+/invoicing /es-us/invoicing 301
+/spanish /es-us/ 301
+/spanish-invoicing /es-us/invoicing 301 
