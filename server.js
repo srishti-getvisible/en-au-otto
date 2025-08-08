@@ -6,14 +6,31 @@ const url = require('url');
 const server = http.createServer((req, res) => {
   let filePath = decodeURIComponent(url.parse(req.url).pathname);
   
-  // Remove trailing slash
-  if (filePath.endsWith('/') && filePath !== '/') {
-    filePath = filePath.slice(0, -1);
+  // Handle root path - redirect to /en-au
+  if (filePath === '/') {
+    res.writeHead(301, { 'Location': '/en-au' });
+    res.end();
+    return;
   }
   
-  // Handle root path
-  if (filePath === '/') {
-    filePath = '/index.html';
+  // Handle /en-au/ (with trailing slash) - redirect to /en-au
+  if (filePath === '/en-au/') {
+    res.writeHead(301, { 'Location': '/en-au' });
+    res.end();
+    return;
+  }
+  
+  // For /en-au path, serve index.html
+  if (filePath === '/en-au') {
+    filePath = '/en-au/index.html';
+  }
+  
+  // Handle other paths with trailing slashes - redirect to non-trailing slash version
+  if (filePath.endsWith('/')) {
+    const newPath = filePath.slice(0, -1);
+    res.writeHead(301, { 'Location': newPath });
+    res.end();
+    return;
   }
   
   // If the path doesn't end with .html, try to serve the .html file
@@ -90,11 +107,13 @@ const server = http.createServer((req, res) => {
   });
 });
 
-const PORT = 3001;
+const PORT = 8080;
 server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
+  console.log(`Server running at http://localhost:${PORT}`);
   console.log('You can now access:');
-  console.log(`- http://localhost:${PORT}/en-au/`);
+  console.log(`- http://localhost:${PORT} (redirects to /en-au)`);
+  console.log(`- http://localhost:${PORT}/en-au`);
   console.log(`- http://localhost:${PORT}/en-au/invoicing`);
   console.log(`- http://localhost:${PORT}/en-au/bookkeeping`);
+  console.log('\nNote: All URLs will be served without trailing slashes');
 }); 
