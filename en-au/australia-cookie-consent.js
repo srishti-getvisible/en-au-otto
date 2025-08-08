@@ -1,30 +1,30 @@
-// Spanish Cookie Consent Component
+// Australia Cookie Consent Component
 (function() {
     'use strict';
     
     // Check if consent has already been given
     function hasConsent() {
-        return localStorage.getItem('spanish-cookie-consent') === 'accepted';
+        return localStorage.getItem('australia-cookie-consent') === 'accepted';
     }
     
     // Save consent
     function saveConsent(accepted) {
-        localStorage.setItem('spanish-cookie-consent', accepted ? 'accepted' : 'declined');
-        localStorage.setItem('spanish-cookie-consent-date', new Date().toISOString());
+        localStorage.setItem('australia-cookie-consent', accepted ? 'accepted' : 'declined');
+        localStorage.setItem('australia-cookie-consent-date', new Date().toISOString());
     }
     
     // Create the cookie consent banner
     function createCookieBanner() {
         const banner = document.createElement('div');
-        banner.id = 'spanish-cookie-banner';
+        banner.id = 'australia-cookie-banner';
         banner.innerHTML = `
             <style>
                 * {
                     box-sizing: border-box;
                 }
-                #spanish-cookie-banner {
+                #australia-cookie-banner {
                     position: fixed;
-                    bottom: 15px;
+                    bottom: 0;
                     left: 0;
                     right: 0;
                     background: #ffffff;
@@ -130,45 +130,62 @@
 
                 
                 @media (max-width: 768px) {
-                    #spanish-cookie-banner {
-                        bottom: 10px;
-                        left: 10px;
-                        right: 10px;
+                    #australia-cookie-banner {
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
                         padding: 15px;
-                        max-height: 220px;
+                        max-height: none;
                     }
                     
                     .cookie-content {
                         flex-direction: column;
-                        align-items: stretch;
+                        align-items: center;
                         text-align: center;
                         gap: 15px;
+                        padding: 10px;
+                    }
+                    
+                    .cookie-text {
+                        max-width: 100%;
+                        margin-right: 0;
+                        text-align: center;
                     }
                     
                     .cookie-buttons {
+                        width: 100%;
                         justify-content: center;
-                        flex-wrap: wrap;
+                        flex-wrap: nowrap;
+                        gap: 8px;
                     }
                     
                     .cookie-text p {
                         font-size: 12px;
-                        line-height: 1.4;
+                        line-height: 1.5;
+                        margin-bottom: 12px;
+                    }
+                    
+                    .cookie-btn {
+                        padding: 8px 12px;
+                        font-size: 12px;
+                        flex: 1;
+                        max-width: 120px;
                     }
                     
                     body.cookie-banner-active {
-                        padding-bottom: 150px;
+                        padding-bottom: 180px;
                     }
                 }
             </style>
             
             <div class="cookie-content">
                 <div class="cookie-text">
-                    <p>Utilizamos cookies esenciales para que nuestro sitio funcione. Con tu consentimiento, también podemos usar cookies no esenciales para mejorar la experiencia del usuario y analizar el tráfico del sitio web. Al hacer clic en "Aceptar", aceptas el uso de cookies de nuestro sitio web según se describe en nuestra <a href="#" target="_blank">Política de Cookies</a>. Puedes cambiar la configuración de cookies en cualquier momento haciendo clic en "Preferencias".</p>
+                    <p>We use essential cookies to make our site work. With your consent, we may also use non-essential cookies to improve your experience and analyse website traffic. By clicking "Accept", you agree to our use of cookies as described in our <a href="#" target="_blank">Cookie Policy</a>. You can change your cookie settings at any time by clicking "Preferences".</p>
                 </div>
                 <div class="cookie-buttons">
-                    <button class="cookie-btn cookie-btn-prefs" onclick="showPreferences()">Preferencias</button>
-                    <button class="cookie-btn cookie-btn-decline" onclick="declineCookies()">Rechazar</button>
-                    <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">Aceptar</button>
+                    <button class="cookie-btn cookie-btn-prefs" onclick="showPreferences()">Preferences</button>
+                    <button class="cookie-btn cookie-btn-decline" onclick="declineCookies()">Decline</button>
+                    <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">Accept</button>
                 </div>
             </div>
         `;
@@ -179,10 +196,10 @@
     // Create preferences modal
     function createPreferencesModal() {
         const modal = document.createElement('div');
-        modal.id = 'spanish-cookie-preferences';
+        modal.id = 'australia-cookie-preferences';
         modal.innerHTML = `
             <style>
-                #spanish-cookie-preferences {
+                #australia-cookie-preferences {
                     position: fixed;
                     top: 0;
                     left: 0;
@@ -290,15 +307,15 @@
             
             <div class="preferences-content">
                 <div class="preferences-header">
-                    <h2>Preferencias de Cookies</h2>
-                    <p>Gestiona tus preferencias de cookies para personalizar tu experiencia en nuestro sitio web.</p>
+                    <h2>Cookie Preferences</h2>
+                    <p>Manage your cookie preferences to personalise your experience on our website.</p>
                 </div>
                 
                 <div class="cookie-category">
                     <div class="cookie-category-header">
                         <div>
-                            <div class="cookie-category-title">Cookies Esenciales</div>
-                            <div class="cookie-category-description">Estas cookies son necesarias para el funcionamiento básico del sitio web y no se pueden desactivar.</div>
+                            <div class="cookie-category-title">Essential Cookies</div>
+                            <div class="cookie-category-description">These cookies are necessary for the basic functionality of the website and cannot be disabled.</div>
                         </div>
                         <div class="cookie-toggle active" data-category="essential"></div>
                     </div>
@@ -307,8 +324,8 @@
                 <div class="cookie-category">
                     <div class="cookie-category-header">
                         <div>
-                            <div class="cookie-category-title">Cookies de Rendimiento</div>
-                            <div class="cookie-category-description">Estas cookies nos ayudan a mejorar el rendimiento del sitio web analizando cómo los visitantes interactúan con él.</div>
+                            <div class="cookie-category-title">Performance Cookies</div>
+                            <div class="cookie-category-description">These cookies allow us to analyze website usage to measure and improve performance.</div>
                         </div>
                         <div class="cookie-toggle" data-category="performance"></div>
                     </div>
@@ -317,8 +334,8 @@
                 <div class="cookie-category">
                     <div class="cookie-category-header">
                         <div>
-                            <div class="cookie-category-title">Cookies de Análisis</div>
-                            <div class="cookie-category-description">Estas cookies nos ayudan a entender cómo los visitantes interactúan con nuestro sitio web recopilando y reportando información de forma anónima.</div>
+                            <div class="cookie-category-title">Functionality Cookies</div>
+                            <div class="cookie-category-description">These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously.</div>
                         </div>
                         <div class="cookie-toggle" data-category="analytics"></div>
                     </div>
@@ -327,16 +344,16 @@
                 <div class="cookie-category">
                     <div class="cookie-category-header">
                         <div>
-                            <div class="cookie-category-title">Cookies de Publicidad</div>
-                            <div class="cookie-category-description">Estas cookies se utilizan para hacer que los mensajes publicitarios sean más relevantes para ti y tus intereses.</div>
+                            <div class="cookie-category-title">Advertising Cookies</div>
+                            <div class="cookie-category-description">Used to deliver advertisements more relevant to you and your interests.</div>
                         </div>
                         <div class="cookie-toggle" data-category="advertising"></div>
                     </div>
                 </div>
                 
                 <div class="preferences-buttons">
-                    <button class="cookie-btn cookie-btn-decline" onclick="closePreferences()">Cancelar</button>
-                    <button class="cookie-btn cookie-btn-accept" onclick="savePreferences()">Guardar Preferencias</button>
+                    <button class="cookie-btn cookie-btn-decline" onclick="closePreferences()">Cancel</button>
+                    <button class="cookie-btn cookie-btn-accept" onclick="savePreferences()">Save Preferences</button>
                 </div>
             </div>
         `;
@@ -409,7 +426,7 @@
         }
     }
     
-    // Disable Termly banner on Spanish pages
+    // Disable Termly banner on Australian pages
     function disableTermly() {
         // Remove any existing Termly banners
         const termlyBanners = document.querySelectorAll('[id*="termly"], [class*="termly"]');
