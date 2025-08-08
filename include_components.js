@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 function includeComponents(htmlContent, componentName) {
-  const componentPath = path.join(__dirname, 'en-gb/components', `${componentName}.html`);
+  const componentPath = path.join(__dirname, 'en-au/components', `${componentName}.html`);
   
   if (fs.existsSync(componentPath)) {
     const componentContent = fs.readFileSync(componentPath, 'utf8');
@@ -33,8 +33,8 @@ function processHTMLFile(filePath) {
 
 // Process all HTML files
 const htmlFiles = [
-  'en-gb/index.html',
-  'en-gb/invoicing.html'
+  'en-au/index.html',
+  'en-au/invoicing.html'
 ];
 
 console.log('🔄 Including components in HTML files...\n');
